@@ -1,0 +1,25 @@
+
+These files are used to build simple test cases for the GCC and LLVM DEJAGNU test suites using either clang or gcc.
+
+Note that currently clang does not support inline assembly so GCC is used for some components.  This sample will be updated as clang eveloves.
+
+To use the test harness Makefile: 
+0) Build a working lm32 gcc toolchain and clang/llvm.
+1) Checkout the Milkymist SOC git repository
+ git clone git://github.com/milkymist/milkymist.git
+2) Build the SOC bios software (see the README)
+  ./build_bios.sh
+3) Set MMDIR to the SOC directory
+4) Add your files to the OBJECTS variable
+5) Set the CC variable appropriately
+6) make depend
+7) make
+
+To run the sample program on qemu do:
+qemu-system-lm32 -M milkymist -kernel main.elf -serial stdio
+
+To debug with gdb do:
+qemu-system-lm32 -M milkymist -kernel main.elf -serial stdio -s -S
+and, in another terminal:
+lm32-rtems4.11-gdb main.elf
+(gdb) target remote localhost:1234
