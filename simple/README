@@ -1,0 +1,4 @@
+A simple harness to run tests.  This uses some lm32 specific qemu hooks to return test results.
+
+Given a source file "main.c" you can compile and run it by doing:
+$ TESTCASE=main.tst CFLAGS="-O3 -g" make check
